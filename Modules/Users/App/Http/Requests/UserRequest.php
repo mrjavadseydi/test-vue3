@@ -23,13 +23,15 @@ class UserRequest extends FormRequest
     {
         //get allowed roles from helper function
         $allowed_roles = allowed_roles();
+        ///if the request is for updating a user password can be empty
+        $is_update = request()->method() === 'PUT';
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'mobile' => 'required|string|max:255',
             'role' => ['required', 'string', 'max:255', 'in:'.implode(',',$allowed_roles)],
-            'password' => 'required|string|min:8',
+            'password' => [$is_update?"nullable":"required", "string", "min:8"],
         ];
     }
 }

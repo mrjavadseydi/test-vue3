@@ -22,8 +22,8 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'mobile' => $this->mobile,
             'role' => $this->role,
-            'created_at' => now($this->created_at)->diffForHumans(),
-            'updated_at' => now($this->updated_at)->diffForHumans(),
+            'created_at' => now()->diffForHumans($this->created_at),
+            'updated_at' => now()->diffForHumans($this->updated_at),
         ];
     }
 }

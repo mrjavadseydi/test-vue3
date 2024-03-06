@@ -3,9 +3,9 @@ if (!function_exists('allowed_roles')) {
     function allowed_roles()
     {
         if (auth()->user()->role == 'operator') {
-            return ['user', 'operator'];
+            return ['customer', 'operator'];
         } elseif(auth()->user()->role == 'admin') {
-            return ['admin', 'user', 'operator'];
+            return ['admin', 'customer', 'operator'];
         }else{
             return [];
         }

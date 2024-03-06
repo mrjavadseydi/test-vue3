@@ -91,7 +91,7 @@ class UsersController extends Controller
             return response('Forbidden', 403);
         }
         try {
-            $data = $request->validated();
+            $data = $request->all();
             if (isset($data['password'])) {
                 $data['password'] = bcrypt($data['password']);
             }
@@ -119,6 +119,6 @@ class UsersController extends Controller
     private function operatorAccess($user): bool
     {
         // if user is operator and trying to edit or create admin return false
-        return !(auth()->user()->role == 'operator' && $user->role == 'admin');
+        return (auth()->user()->role == 'operator' && $user->role == 'admin');
     }
 }
