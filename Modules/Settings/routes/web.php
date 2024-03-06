@@ -14,6 +14,6 @@ use Modules\Settings\App\Http\Controllers\SettingsController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('settings', SettingsController::class)->names('settings');
-});
+//Route::group([], function () {
+//    Route::resource('settings', SettingsController::class)->names('settings');
+//});

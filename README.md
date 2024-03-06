@@ -6,7 +6,7 @@
 ## Modules
 
 ### Users Module
-- [ ] Implement Create, Delete, Edit, and List functionality for users management.
+- [x] Implement Create, Delete, Edit, and List functionality for users management.
 - [x] Database fields for the users table:
     - [x] Name
     - [x] Last Name
@@ -25,7 +25,7 @@
 - [ ] Utilize Vite for front-end tooling.
 - [ ] Ensure the project includes tests.
 - [ ] Preferably include Docker setup.
-- [ ] Host the project on GitHub.
+- [x] Host the project on GitHub.
 - [ ] Document the setup process of the project.
 - [ ] In the documentation, include the time spent on each section of the project.
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('settings', fn (Request $request) => $request->user())->name('settings');
+Route::middleware(['auth:sanctum','role:admin'])->prefix('v1')->name('api.')->group(function () {
+    Route::get('/settings', [\Modules\Settings\App\Http\Controllers\SettingsController::class,'index'])->name('settings.index');
+    Route::post('/settings', [\Modules\Settings\App\Http\Controllers\SettingsController::class,'store'])->name('settings.store');
 });
