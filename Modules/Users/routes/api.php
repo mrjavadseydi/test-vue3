@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('users', fn (Request $request) => $request->user())->name('users');
+Route::middleware(['auth:sanctum','role:admin,operator'])->prefix('v1')->name('api.')->group(function () {
+   Route::resource('users', \Modules\Users\App\Http\Controllers\UsersController::class)->names('users');
 });

@@ -1,19 +1,19 @@
 # todo :
 
 ## Project Structure
-- [ ] Structure the project to be compatible with Laravel Modules. Reference: [nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)
+- [x] Structure the project to be compatible with Laravel Modules. Reference: [nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)
 
 ## Modules
 
 ### Users Module
 - [ ] Implement Create, Delete, Edit, and List functionality for users management.
-- [ ] Database fields for the users table:
-    - [ ] Name
-    - [ ] Last Name
-    - [ ] Mobile Number
-    - [ ] Email
-    - [ ] Password
-    - [ ] Role (Use Enum with values: Customer, Operator, Admin)
+- [x] Database fields for the users table:
+    - [x] Name
+    - [x] Last Name
+    - [X] Mobile Number
+    - [x] Email
+    - [x] Password
+    - [x] Role (Use Enum with values: Customer, Operator, Admin)
 
 ### Settings Module
 - [ ] Provide the ability for admins only to clear cache files and routes cache.
