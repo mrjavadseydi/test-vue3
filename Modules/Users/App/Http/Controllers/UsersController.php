@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Modules\Users\App\Http\Requests\SettingsRequest;
+use Modules\Users\App\Http\Requests\UserRequest;
 use Modules\Users\App\Resources\UserResource;
 
 class UsersController extends Controller
@@ -35,7 +35,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SettingsRequest $request): Response
+    public function store(UserRequest $request): Response
     {
         //let's create the user
         try {
@@ -84,7 +84,7 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SettingsRequest $request, $id): Response
+    public function update(UserRequest $request, $id): Response
     {
         $user = User::query()->findOrFail($id);
         if ($this->operatorAccess($user)) {

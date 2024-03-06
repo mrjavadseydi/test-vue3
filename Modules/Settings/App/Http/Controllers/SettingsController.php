@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
-use Modules\Users\App\Http\Requests\SettingsRequest;
+use Modules\Settings\App\Http\Requests\SettingsRequest;
 
 class SettingsController extends Controller
 {
