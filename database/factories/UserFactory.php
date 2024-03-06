@@ -24,9 +24,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'role' => 'customer', // Default role is customer
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'mobile'=> fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
@@ -40,5 +43,33 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    /**
+     * Indicate that the user is an admin.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'admin',
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user is an operator.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function operator()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'operator',
+            ];
+        });
     }
 }
