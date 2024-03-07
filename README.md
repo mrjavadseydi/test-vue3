@@ -16,7 +16,7 @@
     - [x] Role (Use Enum with values: Customer, Operator, Admin)
 
 ### Settings Module
-- [ ] Provide the ability for admins only to clear cache files and routes cache.
+- [x] Provide the ability for admins only to clear cache files and routes cache.
 
 ## General Requirements
 
