@@ -17,3 +17,4 @@ use Modules\Users\App\Http\Controllers\UsersController;
 //Route::group([], function () {
 //    Route::resource('users', UsersController::class)->names('users');
 //});
+Route::view('/users', 'users::index')->middleware(['auth','role:admin,operator']);
