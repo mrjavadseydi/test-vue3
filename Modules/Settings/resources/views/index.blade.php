@@ -10,13 +10,13 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
     @vite(\Nwidart\Modules\Module::getAssets())
-
+    <link rel="stylesheet" href="https://classless.de/classless.css">
 </head>
 
-<body id="app" class="font-sans antialiased">
+<body id="settings" class="font-sans antialiased">
 <div>
 
-    <Settings/>
+    <settings/>
 </div>
 </body>
 </html>

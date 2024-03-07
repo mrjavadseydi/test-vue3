@@ -3,4 +3,4 @@ import Settings from './Settings.vue';
 
 createApp({})
     .component('Settings', Settings)
-    .mount('#app')
+    .mount('#settings')
