@@ -16,10 +16,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(15);
+        $users = User::orderBy('id', 'desc')->paginate(5);
         //return users resource
-        $resource = UserResource::collection($users);
-        return response($resource, 200);
+        return  UserResource::collection($users);
     }
 
     /**
@@ -72,12 +71,11 @@ class UsersController extends Controller
         if ($this->operatorAccess($user)) {
             return response('Forbidden', 403);
         }
-        $resource = UserResource::collection($user);
         $data = [
-            'user' => $resource,
+            'user' => new UserResource($user),
             'roles' => $allowed_roles
         ];
-        return response($data, 200);
+        return $data;
 
     }
 

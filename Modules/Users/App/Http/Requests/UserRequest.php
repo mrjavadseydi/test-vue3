@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email'.$is_update ? ','.$this->id :'',
             'mobile' => 'required|string|max:255',
             'role' => ['required', 'string', 'max:255', 'in:'.implode(',',$allowed_roles)],
             'password' => [$is_update?"nullable":"required", "string", "min:8"],
