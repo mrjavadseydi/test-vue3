@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $data['token'] = $user->createToken($request->email)->plainTextToken;
         $data['user'] =new UserResource($user);
-
+        auth()->login($user);
         $response = [
             'status' => 'success',
             'message' => 'User is logged in successfully.',
@@ -32,7 +32,7 @@ class AuthController extends Controller
         ];
         return response()->json($response);
     }
-    public function logout(Request $request) :JsonResponse
+    public function logout() :JsonResponse
     {
         auth()->user()->tokens()->delete();
         return response()->json([

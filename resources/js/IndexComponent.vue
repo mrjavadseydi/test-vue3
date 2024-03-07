@@ -1,5 +1,5 @@
 <script setup>
-import {ref,onMounted} from 'vue'
+import {onMounted, ref} from 'vue'
 import axios from 'axios'
 
 const email = ref('')
@@ -20,7 +20,12 @@ const checkToken = async () => {
         }
     }
 }
-
+const logout = () => {
+    localStorage.removeItem('token')
+    axios.defaults.headers.common['Authorization'] = null
+    axios.post('/api/logout')
+    user.value = null
+}
 const login = async () => {
     try {
         const response = await axios.post('/api/login', {
@@ -59,11 +64,20 @@ onMounted(checkToken)
         <div v-if="loginError">{{ loginError }}</div>
 
         <div v-if="user">
-            <a href="/users">Users Page</a>
+            <div v-if="user.role=='customer'">
+            <span>
+                Sorry, you are not authorized to do anything here
+            </span>
+            </div>
+            <div v-if="user.role === 'admin' || user.role === 'operator'">
+                <a href="/users">Users Page</a>
+            </div>
+            <div v-if="user.role === 'admin'">
+                <hr>
+                <a href="/settings">Settings</a>
+            </div>
             <hr>
-            <a href="/settings" v-if="user.role === 'admin'">Settings</a>
-            <hr>
-            <a href="/exit">Exit</a>
+            <a href="#" @click="logout">Exit</a>
         </div>
         <form v-else @submit.prevent="login">
             <input type="email" v-model="email" placeholder="Email">

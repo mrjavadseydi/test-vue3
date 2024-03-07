@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://classless.de/classless.css">
 
 </head>
 <body id="app" class="font-sans antialiased">
