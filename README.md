@@ -20,10 +20,10 @@
 
 ## General Requirements
 
-- [ ] Separate the frontend similar to the backend for each module.
+- [x] Separate the frontend similar to the backend for each module.
 - [ ] Use Sanctum for authentication. Ensure that the login and register functionalities are outside the modules scope.
-- [ ] Utilize Vite for front-end tooling.
-- [ ] Ensure the project includes tests.
+- [x] Utilize Vite for front-end tooling.
+- [x] Ensure the project includes tests.
 - [ ] Preferably include Docker setup.
 - [x] Host the project on GitHub.
 - [ ] Document the setup process of the project.
