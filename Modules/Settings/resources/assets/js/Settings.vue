@@ -51,7 +51,8 @@ const sendData = async () => {
             <h1>
                 Settings:
             </h1>
-            <a href="/">Home</a>
+            <router-link to="/">Home</router-link>
+
 
             <p v-if="message">
                 {{ message }}

@@ -16,9 +16,7 @@
 
 </head>
 <body id="app" class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
-    <index-component/>
-</div>
+    <app/>
 @vite('resources/js/app.js')
 </body>
 </html>

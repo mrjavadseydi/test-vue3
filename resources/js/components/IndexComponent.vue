@@ -82,15 +82,12 @@ const signup = async () => {
         registerError.value = error.response.data.message
     }
 }
-onMounted(checkToken)
+// onMounted(checkToken)
 
 </script>
 
 <template>
     <div>
-
-
-
         <div v-if="user">
             <div v-if="user.role=='customer'">
             <span>
@@ -98,11 +95,12 @@ onMounted(checkToken)
             </span>
             </div>
             <div v-if="user.role === 'admin' || user.role === 'operator'">
-                <a href="/users">Users Page</a>
+                <router-link to="/users">Users</router-link>
+
             </div>
             <div v-if="user.role === 'admin'">
                 <hr>
-                <a href="/settings">Settings</a>
+                <router-link to="/settings">Settings</router-link>
             </div>
             <hr>
             <a href="#" @click="logout">Exit</a>

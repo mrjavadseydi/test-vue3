@@ -51,7 +51,7 @@ function handleDataFromChild(data) {
         <h1>
             Users
         </h1>
-        <a href="/">Home</a>
+        <router-link to="/">Home</router-link>
         <div v-if="page==='index'">
             <user-index-component :me="me" @data-sent="handleDataFromChild"/>
         </div>
