@@ -11,6 +11,7 @@ const mobile = ref('')
 const user = ref(null)
 const loginError = ref(null)
 const registerError = ref(null)
+const loading = ref(true)
 
 const checkToken = async () => {
     const token = localStorage.getItem('token')
@@ -24,6 +25,7 @@ const checkToken = async () => {
             localStorage.removeItem('token')
         }
     }
+    loading.value = false
 }
 const logout = () => {
     localStorage.removeItem('token')
@@ -82,12 +84,19 @@ const signup = async () => {
         registerError.value = error.response.data.message
     }
 }
-// onMounted(checkToken)
+onMounted(checkToken)
 
 </script>
 
 <template>
-    <div>
+    <div v-if="loading">
+        <center>
+            <h1>
+                Loading...
+            </h1>
+        </center>
+    </div>
+    <div v-else>
         <div v-if="user">
             <div v-if="user.role=='customer'">
             <span>
