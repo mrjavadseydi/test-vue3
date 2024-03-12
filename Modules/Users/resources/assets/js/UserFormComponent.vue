@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
@@ -15,6 +15,7 @@ const props = defineProps({
 const user = props.user;
 const emit = defineEmits(['dataSent']);
 const token = localStorage.getItem('token');
+const error = ref('');
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const formData = ref({
@@ -38,7 +39,7 @@ const fetchAllowedRoles = async () => {
 };
 
 const fetchUserData = async () => {
-    if (props.user!=null) {
+    if (props.user != null) {
         try {
             const response = await axios.get(`/api/v1/users/${props.user.id}/edit`);
             formData.value = response.data.user;
@@ -51,22 +52,25 @@ const fetchUserData = async () => {
 
 const sendData = async () => {
     try {
-        if (props.user!=null) {
+        if (props.user != null) {
             await axios.put(`/api/v1/users/${props.user.id}`, formData.value);
         } else {
             await axios.post('/api/v1/users', formData.value);
         }
-        emit('dataSent', { user: props.me, action: 'index' });
-    } catch (error) {
-        console.error('Error sending data:', error);
+        emit('dataSent', {user: props.me, action: 'index'});
+    } catch (er) {
+        error.value = er.response.data.message || 'Error sending data';
+        console.error('Error sending data:', er);
     }
 };
-function sendDataToParent(user,action) {
+
+function sendDataToParent(user, action) {
     emit('dataSent', {
         user,
         action
     });
 }
+
 onMounted(() => {
     fetchAllowedRoles();
     fetchUserData();
@@ -76,9 +80,11 @@ onMounted(() => {
 <template>
     <div>
         <span>User Form</span>
-
+        <div v-if="error!==''">
+            <h3>{{ error }}</h3>
+        </div>
         <br>
-        <a href="#"  @click="sendDataToParent(null,'index')">Users list</a>
+        <a href="#" @click="sendDataToParent(null,'index')">Users list</a>
         <br>
         <form @submit.prevent="sendData">
             <div>
@@ -108,7 +114,7 @@ onMounted(() => {
                     <option v-for="role in allowedRoles" :key="role" :value="role">{{ role }}</option>
                 </select>
             </div>
-            <button type="submit">{{ user!==null ? 'Update User' : 'Create User' }}</button>
+            <button type="submit">{{ user !== null ? 'Update User' : 'Create User' }}</button>
         </form>
     </div>
 </template>
